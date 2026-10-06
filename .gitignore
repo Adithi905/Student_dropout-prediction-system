@@ -1,0 +1,7 @@
+﻿.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.db
+.env
+data/_uploaded_batch.csv

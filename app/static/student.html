@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student Self View</title><link rel="stylesheet" href="/static/styles.css"></head>
+<body>
+<header><div><div class="eyebrow">STUDENT SELF-VIEW</div><h1>Personal Engagement Report</h1><p>Use your activity signals to understand where to focus next.</p></div><nav><a href="/">Overview</a><a href="/faculty">Faculty</a><a href="/student">Student</a></nav></header>
+<main>
+<section class="lookup"><input id="student-id" value="STU1001" placeholder="Enter student ID"><button onclick="studentView()">View report</button></section>
+<div id="student-report"></div>
+</main>
+<script src="/static/app.js"></script><script>studentView();</script>
+</body></html>

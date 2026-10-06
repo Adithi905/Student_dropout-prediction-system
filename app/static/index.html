@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Risk Intelligence</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header>
+  <div>
+    <div class="eyebrow">STUDENT SUCCESS INTELLIGENCE</div>
+    <h1>Engagement & Dropout Risk Platform</h1>
+    <p>Predict risk early. Understand why. Intervene intelligently.</p>
+  </div>
+  <nav><a href="/">Overview</a><a href="/faculty">Faculty</a><a href="/student">Student</a><a href="/docs">API</a></nav>
+</header>
+<main>
+  <section class="hero">
+    <div>
+      <span class="pill">ML-powered early warning system</span>
+      <h2>Turn fragmented student activity into actionable support.</h2>
+      <p>The platform combines academic, attendance and learning-interaction signals to estimate dropout risk and recommend targeted interventions.</p>
+    </div>
+    <div class="hero-card"><b>Explainable by design</b><span>Risk score + engagement score + top contributing factors + intervention plan</span></div>
+  </section>
+  <section id="summary" class="cards"></section>
+  <section class="panel">
+    <div class="panel-head"><h3>At-risk students</h3><button onclick="loadStudents()">Refresh</button></div>
+    <div id="students"></div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+<script>loadSummary(); loadStudents();</script>
+</body>
+</html>

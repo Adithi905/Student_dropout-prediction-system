@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Faculty Dashboard</title><link rel="stylesheet" href="/static/styles.css"></head>
+<body>
+<header><div><div class="eyebrow">FACULTY CONSOLE</div><h1>Student Success Dashboard</h1><p>Prioritize outreach using evidence instead of guesswork.</p></div><nav><a href="/">Overview</a><a href="/faculty">Faculty</a><a href="/student">Student</a></nav></header>
+<main>
+<section class="panel people-panel">
+	<div class="panel-head">
+		<div><div class="eyebrow">DIRECTORY</div><h3>Manage people</h3><p>Add student activity records or faculty contacts.</p></div>
+		<div class="record-actions">
+			<button type="button" onclick="openRecordDialog('student-dialog')">Add student</button>
+			<button type="button" class="button-secondary" onclick="openRecordDialog('teacher-dialog')">Add teacher</button>
+		</div>
+	</div>
+	<p id="directory-status" class="form-status directory-status" role="status" aria-live="polite"></p>
+	<div id="teachers-table"></div>
+</section>
+<section class="panel">
+<div class="panel-head"><h3>Risk filters</h3><div><button onclick="facultyLoad('')">All</button><button onclick="facultyLoad('High')">High</button><button onclick="facultyLoad('Critical')">Critical</button></div></div>
+<div id="faculty-table"></div>
+</section>
+<section class="panel"><h3>Intervention log</h3><div id="interventions"></div></section>
+</main>
+<dialog id="student-dialog" class="record-dialog" aria-labelledby="student-dialog-title">
+	<form id="student-form" class="record-form" onsubmit="submitStudentForm(event)">
+		<div class="dialog-heading"><div><div class="eyebrow">NEW RECORD</div><h2 id="student-dialog-title">Add student</h2></div><button type="button" class="close-button" aria-label="Close" onclick="closeRecordDialog('student-dialog')">&times;</button></div>
+		<fieldset>
+			<legend>Student details</legend>
+			<div class="form-grid">
+				<label>Student ID<input name="id" required maxlength="32" pattern="[A-Za-z0-9_\-]+" placeholder="STU1081"></label>
+				<label>Full name<input name="name" required maxlength="120"></label>
+				<label>Department<input name="department" required maxlength="80" placeholder="Computer Science"></label>
+				<label>Semester<input name="semester" type="number" min="1" max="20" step="1" required></label>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Academic and engagement data</legend>
+			<div class="form-grid">
+				<label>Attendance (%)<input name="attendance_pct" type="number" min="0" max="100" step="0.1" required></label>
+				<label>Assignment completion (%)<input name="assignment_completion_pct" type="number" min="0" max="100" step="0.1" required></label>
+				<label>Average assignment score<input name="avg_assignment_score" type="number" min="0" max="100" step="0.1" required></label>
+				<label>Average exam score<input name="avg_exam_score" type="number" min="0" max="100" step="0.1" required></label>
+				<label>LMS sessions per week<input name="lms_sessions_per_week" type="number" min="0" max="7" step="0.1" required></label>
+				<label>Average session minutes<input name="avg_session_minutes" type="number" min="0" max="1440" step="0.1" required></label>
+				<label>Late submissions<input name="late_submissions" type="number" min="0" step="1" required></label>
+				<label>Quiz attempts<input name="quiz_attempts" type="number" min="0" step="1" required></label>
+				<label>Forum posts<input name="forum_posts" type="number" min="0" step="1" required></label>
+				<label>Days inactive<input name="days_inactive" type="number" min="0" step="1" required></label>
+				<label>Previous GPA (0-10)<input name="previous_semester_gpa" type="number" min="0" max="10" step="0.01" required></label>
+				<label>Financial stress (0-10)<input name="financial_stress" type="number" min="0" max="10" step="0.1" required></label>
+				<label>Commute minutes<input name="commute_minutes" type="number" min="0" max="1440" step="0.1" required></label>
+			</div>
+		</fieldset>
+		<p id="student-form-status" class="form-status" role="status" aria-live="polite"></p>
+		<div class="dialog-actions"><button type="button" class="button-secondary" onclick="closeRecordDialog('student-dialog')">Cancel</button><button type="submit">Save student</button></div>
+	</form>
+</dialog>
+<dialog id="teacher-dialog" class="record-dialog" aria-labelledby="teacher-dialog-title">
+	<form id="teacher-form" class="record-form" onsubmit="submitTeacherForm(event)">
+		<div class="dialog-heading"><div><div class="eyebrow">NEW CONTACT</div><h2 id="teacher-dialog-title">Add teacher</h2></div><button type="button" class="close-button" aria-label="Close" onclick="closeRecordDialog('teacher-dialog')">&times;</button></div>
+		<div class="form-grid">
+			<label>Faculty ID<input name="id" required maxlength="32" pattern="[A-Za-z0-9_\-]+" placeholder="FAC001"></label>
+			<label>Full name<input name="name" required maxlength="120"></label>
+			<label>Email<input name="email" type="email" required maxlength="254"></label>
+			<label>Department<input name="department" required maxlength="80"></label>
+		</div>
+		<p id="teacher-form-status" class="form-status" role="status" aria-live="polite"></p>
+		<div class="dialog-actions"><button type="button" class="button-secondary" onclick="closeRecordDialog('teacher-dialog')">Cancel</button><button type="submit">Save teacher</button></div>
+	</form>
+</dialog>
+<script src="/static/app.js"></script><script>facultyLoad(''); loadInterventions(); loadTeachers();</script>
+</body></html>
